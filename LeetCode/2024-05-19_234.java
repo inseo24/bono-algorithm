@@ -46,19 +46,5 @@ class Solution {
 
         return slow;
     }
-}n prev;
-    }
-
-    private ListNode endOfFirstHalf(ListNode head) {
-        ListNode fast = head;
-        ListNode slow = head;
-
-        while (fast.next != null && fast.next.next != null) {
-            fast = fast.next.next;
-            slow = slow.next;
-        }
-
-        return slow;
-    }
 }
 
