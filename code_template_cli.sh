@@ -36,14 +36,11 @@ case $language in
     ;;
 esac
 
-echo "코드를 입력하세요 (끝내려면 'done'을 입력하세요):"
-code=""
-while IFS= read -r line; do
-  if [[ "$line" == "done" ]]; then
-    break
-  fi
-  code+="$line"$'\n'
-done
+echo "코드를 입력하세요. 저장하고 에디터를 종료하면 스크립트가 계속됩니다."
+tempfile=$(mktemp)
+vim "$tempfile"
+code=$(cat "$tempfile")
+rm "$tempfile"
 
 if [ -z "$code" ]; then
   echo "작업이 취소되었습니다."
