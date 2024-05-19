@@ -36,10 +36,10 @@ case $language in
     ;;
 esac
 
-echo "코드를 입력하세요 (끝내려면 빈 줄 또는 'done'을 입력하세요):"
+echo "코드를 입력하세요 (끝내려면 'done'을 입력하세요):"
 code=""
 while IFS= read -r line; do
-  if [[ -z "$line" || "$line" == "done" ]]; then
+  if [[ "$line" == "done" ]]; then
     break
   fi
   code+="$line"$'\n'
