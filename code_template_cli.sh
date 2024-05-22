@@ -36,6 +36,13 @@ case $language in
     ;;
 esac
 
+read -p "issue 번호: " issue_number
+
+if [ -z "$issue_number" ]; then
+  echo "issue 번호는 필수입니다."
+  exit 1
+fi
+
 echo "코드를 입력하세요. 저장하고 에디터를 종료하면 스크립트가 계속됩니다."
 tempfile=$(mktemp)
 vim "$tempfile"
@@ -57,7 +64,7 @@ file_name="${current_date}_${problem_number:-Unknown}.$extension"
 mkdir -p "$folder_name"
 echo "$code" > "$folder_name/$file_name"
 
-branch_name="${current_date}_${platform}_${problem_number:-Unknown}_${problem_description:-NoDescription}"
+branch_name="[#${issue_number}]_${platform}_${problem_number:-Unknown}_${problem_description:-NoDescription}_${current_date}"
 git checkout -b "$branch_name"
 
 git add "$folder_name/$file_name"
