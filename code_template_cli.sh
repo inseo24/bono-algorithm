@@ -64,14 +64,15 @@ file_name="${current_date}_${problem_number:-Unknown}.$extension"
 mkdir -p "$folder_name"
 echo "$code" > "$folder_name/$file_name"
 
-branch_name="${issue_number}_${platform}_${problem_number:-Unknown}_${problem_description:-NoDescription}_${current_date}"
-branch_name=$(echo "$branch_name" | tr '[:upper:]' '[:lower:]' | tr ' ' '_' | tr -cd '[:alnum:]_-')
-
+branch_name="issue-${issue_number}"
 git checkout -b "$branch_name"
 
 git add "$folder_name/$file_name"
 
-commit_message="Add solution for $platform problem #${problem_number:-Unknown} in $language_name"
+commit_message="[#${issue_number}] Add solution for $platform problem #${problem_number:-Unknown} in $language_name"
+if [ -n "$problem_description" ]; then
+  commit_message="$commit_message - $problem_description"
+fi
 git commit -m "$commit_message"
 
 git push -u origin "$branch_name"
