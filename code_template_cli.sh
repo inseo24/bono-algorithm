@@ -64,7 +64,7 @@ file_name="${current_date}_${problem_number:-Unknown}.$extension"
 mkdir -p "$folder_name"
 echo "$code" > "$folder_name/$file_name"
 
-branch_name="issue-${issue_number}"
+branch_name="#${issue_number}"
 git checkout -b "$branch_name"
 
 git add "$folder_name/$file_name"
