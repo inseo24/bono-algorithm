@@ -1,17 +1,19 @@
 import java.util.*;
 
 class Solution {
-    public boolean solution(String[] phone_book) {
-        HashSet<String> set = new HashSet<>(Arrays.asList(phone_book));
+    public int solution(String[][] clothes) {
+        int answer = 1;
+        HashMap<String, Integer> clothesMap = new HashMap<String, Integer>();
 
-        for (String phone : phone_book) {
-            for (int i = 1; i < phone.length(); i++) {
-                if (set.contains(phone.substring(0, i))) {
-                    return false;
-                }
-            }
+        for (int i = 0; i < clothes.length; i++) {
+            String[] arr = clothes[i];;
+            clothesMap.put(arr[1], clothesMap.getOrDefault(arr[1], 0) + 1);
         }
-        
-        return true;
+
+        for (Integer value: clothesMap.values()) {
+            answer *= (value + 1);
+        }
+
+        return answer - 1;
     }
 }
