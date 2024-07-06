@@ -8,6 +8,7 @@ read -p "선택: " platform
 case $platform in
   1) platform="LeetCode" ;;
   2) platform="BOJ" ;;
+  3) platform="Programmers" ;;
   *) echo "잘못된 입력입니다." && exit 1 ;;
 esac
 
