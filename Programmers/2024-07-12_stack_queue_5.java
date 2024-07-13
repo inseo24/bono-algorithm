@@ -15,3 +15,21 @@ public class Solution {
         return s;
     }
 }
+
+// int[] 로 리턴, ArrayList 활용하는 답안 추가
+public class Solution {
+    public int[] solution(int[] arr) {
+        if (arr == null || arr.length == 0) return new int[0];
+        
+        ArrayList<Integer> list = new ArrayList<>();
+        list.add(arr[0]);
+        
+        for (int i = 1; i < arr.length; i++) {
+            if (list.get(list.size() - 1) != arr[i]) {
+                list.add(arr[i]);
+            }
+        }
+        
+        return list.stream().mapToInt(i -> i).toArray();
+    }
+}
